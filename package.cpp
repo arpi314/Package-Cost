@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Package{
+class Package{ //base class
 
     private:
         float weight;
@@ -26,12 +26,12 @@ class Package{
             return this->cost;
         }
 
-        float calculateCost(){
+        float calculateCost(){ //calculates standard costs [weight*cost]
             return getWeight()*getCost();
         }
 };
 
-class TwoDayPackage : private Package{
+class TwoDayPackage : private Package{ //derived class
 
     private:
         float fee;
@@ -49,7 +49,7 @@ class TwoDayPackage : private Package{
             return this->fee;
         }
 
-        float calculateCost(){
+        float calculateCost(){ //[standard cost + additional fee] 
             return Package::calculateCost() + getFee();
         }
 };
@@ -71,12 +71,12 @@ class OvernightPackage : public Package{
             return this->fee;
         }
 
-        float calculateCost(){
+        float calculateCost(){//[standard cost + weight*addon fee]
             float weight;
             float totalCost;
 
             weight = (Package::getWeight()) * (getFee());
-            totalCost = Package::calculateCost() + weight;
+            totalCost = Package::calculateCost() + weight; 
 
             return totalCost;
         }
